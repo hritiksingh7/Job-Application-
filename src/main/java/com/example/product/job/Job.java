@@ -1,13 +1,24 @@
 package com.example.product.job;
 
-public class Job {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+// import jakarta.persistence.Table;
 
+@Entity
+// @Table(name = "JOB_TABLE")   // In case we need the name of table in db to be different from classname
+public class Job {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // JPA manages the primary key, we dont do it manually
     private Long id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
+    
+    public Job(){}  // default constructed is necessary for JPA
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
         this.id = id;
