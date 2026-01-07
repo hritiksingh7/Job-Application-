@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 @Entity
 // @Table(name = "JOB_TABLE")   // In case we need the name of table in db to be different from classname
 public class Job {
-    @Id
+    @Id        // Denotes that id is the ID of the class(table in db)
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // JPA manages the primary key, we dont do it manually
     private Long id;
     private String title;
@@ -18,7 +18,7 @@ public class Job {
     private String maxSalary;
     private String location;
     
-    public Job(){}  // default constructed is necessary for JPA
+    public Job(){}  // default constructer is necessary for working with JPA (research)
 
     public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
         this.id = id;
