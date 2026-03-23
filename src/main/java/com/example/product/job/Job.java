@@ -1,10 +1,17 @@
 package com.example.product.job;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 // import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
+
+import org.hibernate.annotations.ManyToAny;
+
+import com.example.product.company.Company;
 
 @Entity
 // @Table(name = "JOB_TABLE")   // In case we need the name of table in db to be different from classname
@@ -17,6 +24,9 @@ public class Job {
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    @ManyToOne
+    private Company company;
     
     public Job(){}  // default constructer is necessary for working with JPA (research)
 
@@ -75,5 +85,13 @@ public class Job {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company){
+        this.company = company;
     }
 }
