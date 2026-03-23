@@ -7,9 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 // import jakarta.persistence.Table;
-import jakarta.persistence.OneToMany;
-
-import org.hibernate.annotations.ManyToAny;
 
 import com.example.product.company.Company;
 

@@ -1,8 +1,5 @@
 package com.example.product.job;
 
-import com.example.product.job.Job;
-import com.example.product.job.JobService;
-
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -17,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import org.springframework.web.bind.annotation.PutMapping;
 
 

@@ -1,7 +1,6 @@
 package com.example.product.company;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CompanyService {
     List<Company> getAllCompanies();
