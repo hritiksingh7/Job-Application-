@@ -58,5 +58,70 @@ public class ReviewServiceImplementation implements ReviewService {
                .orElse(null);
     }
 
+
+
+    @Override
+    public boolean updateReview(Long companyId, Long reviewId, Review review) {
+        Company company = companyService.getCompanyById(companyId);
+
+        if(company != null){
+            review.setCompany(company);
+            review.setId(reviewId);
+            reviewRepository.save(review);
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+    @Override
+    public boolean deleteReview(Long companyId, Long reviewId) {
+        Company company = companyService.getCompanyById(companyId);
+
+        if(company != null){
+
+            // MY SOLUTION
+            // Review review = reviewRepository
+            //                 .findByCompanyId(companyId)
+            //                 .stream()
+            //                 .filter(rev -> rev.getId().equals(reviewId))
+            //                 .findFirst()
+            //                 .orElse(null);
+            
+            // if(review != null){
+            //     reviewRepository.delete(review);
+            //     return true;
+            // }
+            
+
+
+            // BEST APPROACH BY GPT
+            // Review review = reviewRepository
+            //                 .findByIdAndCompanyId(reviewId, companyId)
+            //                 .orElse(null);
+
+            // if (review != null) {
+            //     reviewRepository.delete(review);
+            //     return true;
+            // }
+            // return false;
+
+
+
+            // FAISAL SOLUTION
+            if(reviewRepository.existsById(reviewId)){
+                Review review = reviewRepository.findById(reviewId).orElse(null);
+                Company comp = review.getCompany();
+                comp.getReviews().remove(review);  // for in-memory consistency, not DB
+                companyService.updateCompany(comp, companyId);
+                reviewRepository.deleteById(reviewId);
+                return true;
+            }
+        }
+        return false;
+    }
+
     
 }
